@@ -5,15 +5,15 @@ This project provides functionality to transcribe large audio files by breaking 
 ## Prerequisites
 
 - Python 3.8 or higher
-- FFmpeg installed on your system
+- FFmpeg installed on your system (for Windows, obtain from (https://github.com/BtbN/FFmpeg-Builds/releases))
 - A Groq API key (obtain from [Groq Console](https://console.groq.com/keys))
 
 ## Installation
 
 1. Clone the repository:
 ```bash
-git clone [your-repository-url]
-cd [repository-name]
+git clone https://github.com/thomsetiabudi/groqcloudwhisper.git
+cd groqcloudwhisper
 ```
 
 2. Create and activate a virtual environment:
