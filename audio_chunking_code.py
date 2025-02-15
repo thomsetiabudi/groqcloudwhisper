@@ -8,6 +8,7 @@ import subprocess
 import os
 import tempfile
 import re
+from dotenv import load_dotenv
 
 def preprocess_audio(input_path: Path) -> Path:
     """
@@ -61,7 +62,7 @@ def transcribe_single_chunk(client: Groq, chunk: AudioSegment, chunk_num: int, t
     total_api_time = 0
 
     while True:
-        temp_dir = "D:/Projects/AIProject/GroqAudio/temp"
+        temp_dir = "temp"
         print(f"Reading file");
         with tempfile.NamedTemporaryFile(dir=temp_dir, suffix='.flac', delete=False) as temp_file:
             print(f"Reading file {temp_file.name}");
@@ -309,6 +310,8 @@ def transcribe_audio_in_chunks(audio_path: Path, chunk_length: int = 600, overla
         ValueError: If Groq API key is not set
         RuntimeError: If audio file fails to load
     """
+    # Load environment variables from a .env file
+    load_dotenv()
     api_key = os.getenv("GROQ_API_KEY")
     if not api_key:
         raise ValueError("GROQ_API_KEY environment variable not set")
@@ -364,4 +367,4 @@ def transcribe_audio_in_chunks(audio_path: Path, chunk_length: int = 600, overla
             Path(processed_path).unlink(missing_ok=True)
 
 if __name__ == "__main__":
-    transcribe_audio_in_chunks(Path("audio_file_name.wav"))
+    transcribe_audio_in_chunks(Path("/home/thomas/Videos/Trading/MY/output_file.wav"))
